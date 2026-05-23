@@ -1,0 +1,55 @@
+{
+  "generated_at_utc": "2026-05-23T07:12:43.339281+00:00",
+  "seed": 20260523,
+  "design_method": "balanced_stratified",
+  "design_description": "Marginally-balanced random design with independent column stratification. Each factor's levels appear floor(n/k) or ceil(n/k) times; columns shuffled independently with master-seeded child RNGs, then zipped row-wise. NOT a formal Resolution IV design - we opted for guaranteed marginal balance and approximate column-pair orthogonality (verified max |Pearson r| <= 0.10) over the divisibility-constrained alternative of pyDOE2.gsd, which produced heavily imbalanced marginals for the (8,6,4,3,2,2,2) factor structure at reduction=12. Trade-off documented honestly in the paper's methodology.",
+  "tool": "Python stdlib + numpy (pyDOE2 available but unused)",
+  "full_factorial_size": 2016,
+  "unique_configurations": 375,
+  "repetitions": 3,
+  "total_runs": 1125,
+  "factors": {
+    "scan_type": [
+      "sS",
+      "sT",
+      "sN",
+      "sF",
+      "sX",
+      "sA",
+      "sU"
+    ],
+    "timing": [
+      "T0",
+      "T1",
+      "T2",
+      "T3",
+      "T4",
+      "T5"
+    ],
+    "fragmentation": [
+      "none",
+      "f",
+      "ff",
+      "mtu24"
+    ],
+    "decoys": [
+      "none",
+      "d5",
+      "d10"
+    ],
+    "padding": [
+      "none",
+      "pad50"
+    ],
+    "source_port": [
+      "none",
+      "sp53"
+    ]
+  },
+  "service_ports": "21,22,80,445,3306,6379",
+  "command_placeholders": [
+    "<TARGET_IP>",
+    "<RUN_DIR>"
+  ],
+  "pre_registration": "Commit matrix.csv and matrix_meta.json to GitHub BEFORE any GCP data collection. The execution_order column locks the run sequence; any deviation must be logged in a separate amendments.md file."
+}
